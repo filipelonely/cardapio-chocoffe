@@ -15,8 +15,18 @@
     
     body { 
       font-family: 'Plus Jakarta Sans', sans-serif; 
-      background-color: #f7f5f4; 
-      color: #372E2D; 
+      background-color: #fff5f7; 
+      color: #250902; 
+    }
+
+    /* Scrollbar visível/sensível ao toque na rolagem horizontal */
+    .filter-scroll {
+      display: flex;
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-x;
+      scroll-behavior: smooth;
     }
 
     .scrollbar-hide::-webkit-scrollbar { display: none; }
@@ -25,23 +35,23 @@
 </head>
 <body class="min-h-screen flex flex-col text-sm pb-24">
 
-  <!-- CAPA / BANNER SUPERIOR -->
-  <div class="relative w-full h-48 sm:h-64 bg-[#372E2D] overflow-hidden">
-    <!-- EDITAR AQUI: Imagem do Banner de Capa (substitua a URL ou coloque o caminho da sua imagem) -->
+  <!-- CAPA / BANNER SUPERIOR (Sem fundo rosa) -->
+  <div class="relative w-full h-48 sm:h-64 bg-[#250902] overflow-hidden">
+    <!-- EDITAR AQUI: Imagem do Banner de Capa -->
     <img 
       src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=1200&q=80" 
       alt="Capa Brownies" 
       class="w-full h-full object-cover opacity-80"
     >
-    <div class="absolute inset-0 bg-gradient-to-t from-[#372E2D]/80 via-transparent to-black/30"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
   </div>
 
   <!-- CONTAINER DO CABEÇALHO -->
   <div class="max-w-3xl mx-auto w-full px-4 -mt-20 relative z-10">
-    <div class="bg-white rounded-3xl shadow-xl p-5 sm:p-6 text-center border border-[#C9958D]/30">
+    <div class="bg-white rounded-3xl shadow-xl p-5 sm:p-6 text-center border border-[#fb6f92]/20">
       
-      <!-- LOGO CENTRALIZADA (Aumentada a circunferência e apontada para logo.png) -->
-      <div class="w-32 h-32 sm:w-36 sm:h-36 rounded-full bg-white p-1.5 shadow-xl mx-auto -mt-20 sm:-mt-24 border-4 border-white overflow-hidden relative">
+      <!-- LOGO CENTRALIZADA -->
+      <div class="w-40 h-40 sm:w-48 sm:h-48 rounded-full bg-white p-1 shadow-xl mx-auto -mt-24 sm:-mt-28 border-4 border-[#fb6f92] overflow-hidden relative">
         <!-- EDITAR AQUI: Foto de Perfil / Logo principal da loja -->
         <img 
           src="logo.png" 
@@ -52,24 +62,24 @@
       </div>
 
       <!-- Informações da Loja -->
-      <h1 class="text-xl sm:text-2xl font-black text-[#372E2D] mt-3 uppercase tracking-tight">
+      <h1 class="text-xl sm:text-2xl font-black text-[#250902] mt-3 uppercase tracking-tight">
         Confeitaria ChoCoffee Paixão
       </h1>
 
-      <div class="flex items-center justify-center space-x-2 text-xs font-semibold text-[#5C423E] mt-2 flex-wrap gap-y-1">
+      <div class="flex items-center justify-center space-x-2 text-xs font-semibold text-[#43291f] mt-2 flex-wrap gap-y-1">
         <!-- EDITAR AQUI: Cidade/Estado principal -->
-        <span class="flex items-center"><i class="fa-solid fa-location-dot mr-1.5 text-[#AF4C3C]"></i> Salvador - BA</span>
+        <span class="flex items-center"><i class="fa-solid fa-location-dot mr-1.5 text-[#250902]"></i> Salvador - BA</span>
         <span>•</span>
-        <button onclick="openStoreInfoModal()" class="text-[#AF4C3C] hover:underline font-bold flex items-center">
-          <i class="fa-solid fa-circle-info mr-1"></i> Mais informações
+        <button onclick="openStoreInfoModal()" class="text-[#250902] bg-[#ffe5ec] hover:bg-[#ffb3c6] px-3 py-1 rounded-full font-bold flex items-center shadow-sm transition border border-[#fb6f92]/30">
+          <i class="fa-solid fa-circle-info mr-1 text-[#250902]"></i> Mais informações
         </button>
       </div>
 
       <!-- Horário / Status -->
-      <div class="mt-3 inline-flex items-center space-x-2 bg-[#fcf8f7] px-3 py-1.5 rounded-full border border-[#C9958D]/40">
-        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+      <div class="mt-3 inline-flex items-center space-x-2 bg-[#fb6f92]/10 px-3.5 py-1.5 rounded-full border border-[#fb6f92]/20">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
         <!-- EDITAR AQUI: Horário de fechamento na barra principal -->
-        <span class="text-xs font-bold text-[#AF4C3C]">Aberto para pedidos • Fechamento às 19h00</span>
+        <span class="text-xs font-bold text-[#250902]">Aberto para pedidos • Fechamento às 19h00</span>
       </div>
 
     </div>
@@ -80,76 +90,81 @@
 
     <!-- Campo de Pesquisa -->
     <div class="relative">
-      <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-[#C9958D]"></i>
+      <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-[#250902]/50"></i>
       <input 
         type="text" 
         id="search-input"
         oninput="filterProducts()" 
-        placeholder="Buscar brownie ou recheio..." 
-        class="w-full pl-11 pr-4 py-3 bg-white rounded-2xl border border-[#C9958D]/40 text-xs font-semibold text-[#372E2D] outline-none focus:border-[#AF4C3C] shadow-sm transition"
+        placeholder="Buscar brownie, bolo ou recheio..." 
+        class="w-full pl-11 pr-4 py-3 bg-white rounded-2xl border border-[#fb6f92]/30 text-xs font-semibold text-[#250902] outline-none focus:border-[#fb6f92] shadow-sm transition placeholder-[#43291f]/40"
       >
     </div>
 
-    <!-- Categorias -->
-    <div class="flex space-x-2 overflow-x-auto scrollbar-hide py-1">
-      <button onclick="setCategory('all')" id="cat-all" class="cat-btn px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap bg-[#AF4C3C] text-white shadow-sm transition flex items-center">
-        <i class="fa-solid fa-layer-group mr-1.5"></i> Todos
-      </button>
-      <button onclick="setCategory('tradicionais')" id="cat-tradicionais" class="cat-btn px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap bg-white text-[#5C423E] border border-[#C9958D]/30 hover:border-[#AF4C3C] transition flex items-center">
-        <i class="fa-solid fa-square mr-1.5 text-[#AF4C3C]"></i> Tradicionais
-      </button>
-      <button onclick="setCategory('recheados')" id="cat-recheados" class="cat-btn px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap bg-white text-[#5C423E] border border-[#C9958D]/30 hover:border-[#AF4C3C] transition flex items-center">
-        <i class="fa-solid fa-cookie-bite mr-1.5 text-[#AF4C3C]"></i> Recheados
-      </button>
-      <button onclick="setCategory('combos')" id="cat-combos" class="cat-btn px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap bg-white text-[#5C423E] border border-[#C9958D]/30 hover:border-[#AF4C3C] transition flex items-center">
-        <i class="fa-solid fa-box-open mr-1.5 text-[#AF4C3C]"></i> Kits & Combos
-      </button>
+    <!-- Categorias com suporte total a touch/arraste em celulares -->
+    <div class="w-full overflow-hidden">
+      <div class="filter-scroll scrollbar-hide space-x-2 py-1 px-0.5">
+        <button onclick="setCategory('all')" id="cat-all" class="cat-btn px-4 py-2 rounded-xl text-xs font-bold shrink-0 bg-[#fb6f92] text-white shadow-md transition flex items-center">
+          <i class="fa-solid fa-layer-group mr-1.5 text-[#250902]"></i> Todos
+        </button>
+        <button onclick="setCategory('recheados')" id="cat-recheados" class="cat-btn px-4 py-2 rounded-xl text-xs font-bold shrink-0 bg-white text-[#250902] border border-[#fb6f92]/30 hover:bg-[#ffe5ec] transition flex items-center">
+          <i class="fa-solid fa-cookie-bite mr-1.5 text-[#250902]"></i> Recheados
+        </button>
+        <button onclick="setCategory('bolos-cocada')" id="cat-bolos-cocada" class="cat-btn px-4 py-2 rounded-xl text-xs font-bold shrink-0 bg-white text-[#250902] border border-[#fb6f92]/30 hover:bg-[#ffe5ec] transition flex items-center">
+          <i class="fa-solid fa-cake-candles mr-1.5 text-[#250902]"></i> Bolos Gelados & Cocada
+        </button>
+        <button onclick="setCategory('diferenciados')" id="cat-diferenciados" class="cat-btn px-4 py-2 rounded-xl text-xs font-bold shrink-0 bg-white text-[#250902] border border-[#fb6f92]/30 hover:bg-[#ffe5ec] transition flex items-center">
+          <i class="fa-solid fa-star mr-1.5 text-[#250902]"></i> Diferenciados
+        </button>
+        <button onclick="setCategory('combos')" id="cat-combos" class="cat-btn px-4 py-2 rounded-xl text-xs font-bold shrink-0 bg-white text-[#250902] border border-[#fb6f92]/30 hover:bg-[#ffe5ec] transition flex items-center">
+          <i class="fa-solid fa-box-open mr-1.5 text-[#250902]"></i> Kits & Combos
+        </button>
+      </div>
     </div>
 
     <!-- LISTA DE PRODUTOS -->
-    <div id="products-container" class="space-y-4">
+    <div id="products-container" class="space-y-3">
       <!-- Renderizado dinamicamente via JS -->
     </div>
 
   </main>
 
   <!-- BARRA FIXA INFERIOR DO CARRINHO -->
-  <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-[#C9958D]/30 shadow-2xl p-3 z-40">
+  <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-[#fb6f92]/20 shadow-2xl p-3 z-40">
     <div class="max-w-3xl mx-auto flex items-center justify-between">
       <div>
-        <span class="text-[10px] uppercase font-bold text-[#5C423E] block">Total do Pedido</span>
-        <span id="cart-total" class="text-lg font-black text-[#372E2D]">R$ 0,00</span>
+        <span class="text-[10px] uppercase font-bold text-[#43291f]/70 block">Total do Pedido</span>
+        <span id="cart-total" class="text-lg font-black text-[#fb6f92]">R$ 0,00</span>
       </div>
       <button 
         onclick="openCartModal()" 
-        class="bg-[#FF5E46] hover:bg-[#FF7E6A] text-white px-6 py-3 rounded-2xl font-bold text-xs flex items-center space-x-2 shadow-lg transition active:scale-95"
+        class="bg-[#fb6f92] hover:bg-[#ff5c8a] text-white px-6 py-3 rounded-2xl font-bold text-xs flex items-center space-x-2 shadow-lg transition active:scale-95"
       >
-        <i class="fa-solid fa-bag-shopping"></i>
+        <i class="fa-solid fa-bag-shopping text-[#250902]"></i>
         <span>Ver Carrinho</span>
-        <span id="cart-count" class="bg-white text-[#FF5E46] text-[10px] font-black px-2 py-0.5 rounded-full ml-1">0</span>
+        <span id="cart-count" class="bg-[#250902] text-white text-[10px] font-black px-2 py-0.5 rounded-full ml-1">0</span>
       </button>
     </div>
   </div>
 
   <!-- MODAL DETALHES DO PRODUTO -->
   <div id="product-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
-    <div class="bg-white w-full max-w-md rounded-t-3xl sm:rounded-3xl max-h-[90vh] flex flex-col overflow-hidden shadow-2xl">
-      <div class="relative h-56 bg-[#372E2D]">
+    <div class="bg-white w-full max-w-md rounded-t-3xl sm:rounded-3xl max-h-[90vh] flex flex-col overflow-hidden shadow-2xl border border-[#fb6f92]/20">
+      <div class="relative h-56 bg-[#fb6f92]">
         <img id="detail-img" src="" alt="" class="w-full h-full object-cover">
-        <button onclick="closeProductModal()" class="absolute top-3 right-3 bg-black/50 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-black/70">
+        <button onclick="closeProductModal()" class="absolute top-3 right-3 bg-[#250902]/70 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-[#250902]">
           <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
       <div class="p-5 space-y-3 overflow-y-auto">
-        <h3 id="detail-title" class="font-extrabold text-lg text-[#372E2D]"></h3>
-        <p id="detail-price" class="font-black text-xl text-[#AF4C3C]"></p>
-        <div class="border-t border-[#C9958D]/20 pt-3">
-          <h4 class="font-bold text-xs uppercase text-[#5C423E] mb-1"><i class="fa-solid fa-circle-info mr-1 text-[#AF4C3C]"></i> Descrição Detalhada</h4>
-          <p id="detail-desc" class="text-xs text-[#5C423E] leading-relaxed"></p>
+        <h3 id="detail-title" class="font-extrabold text-lg text-[#250902]"></h3>
+        <p id="detail-price" class="font-black text-xl text-[#fb6f92]"></p>
+        <div class="border-t border-gray-100 pt-3">
+          <h4 class="font-bold text-xs uppercase text-[#43291f] mb-1"><i class="fa-solid fa-circle-info mr-1 text-[#250902]"></i> Descrição Detalhada</h4>
+          <p id="detail-desc" class="text-xs text-[#43291f]/80 leading-relaxed"></p>
         </div>
       </div>
-      <div class="p-4 bg-[#fcf8f7] border-t border-[#C9958D]/30 flex items-center justify-between">
-        <button id="detail-add-btn" onclick="" class="w-full py-3 bg-[#FF5E46] hover:bg-[#FF7E6A] text-white font-bold text-xs rounded-2xl shadow-lg transition">
+      <div class="p-4 bg-gray-50 border-t border-gray-100 flex items-center justify-between">
+        <button id="detail-add-btn" onclick="" class="w-full py-3 bg-[#fb6f92] hover:bg-[#ff5c8a] text-white font-bold text-xs rounded-2xl shadow-lg transition">
           + Adicionar ao Carrinho
         </button>
       </div>
@@ -158,49 +173,49 @@
 
   <!-- MODAL MAIS INFORMAÇÕES DA LOJA -->
   <div id="store-info-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
-    <div class="bg-white w-full max-w-md rounded-t-3xl sm:rounded-3xl max-h-[90vh] flex flex-col overflow-hidden shadow-2xl">
-      <div class="p-4 bg-[#372E2D] text-white flex items-center justify-between">
+    <div class="bg-white w-full max-w-md rounded-t-3xl sm:rounded-3xl max-h-[90vh] flex flex-col overflow-hidden shadow-2xl border border-[#fb6f92]/20">
+      <div class="p-4 bg-[#fb6f92] text-white flex items-center justify-between">
         <h3 class="font-black text-sm uppercase tracking-wider flex items-center">
-          <i class="fa-solid fa-store text-[#FF7E6A] mr-2"></i> Sobre a Confeitaria
+          <i class="fa-solid fa-store text-[#250902] mr-2"></i> Sobre a Confeitaria
         </h3>
         <button onclick="closeStoreInfoModal()" class="text-white/70 hover:text-white p-1">
           <i class="fa-solid fa-xmark text-lg"></i>
         </button>
       </div>
-      <div class="p-5 space-y-4 overflow-y-auto text-xs text-[#5C423E]">
+      <div class="p-5 space-y-3 overflow-y-auto text-xs text-[#43291f]">
         
         <!-- EDITAR AQUI: Endereço completo -->
-        <div class="flex items-start space-x-3 bg-[#fcf8f7] p-3 rounded-2xl border border-[#C9958D]/20">
-          <i class="fa-solid fa-location-dot text-[#AF4C3C] text-base mt-0.5"></i>
+        <div class="flex items-start space-x-3 bg-gray-50 p-3 rounded-2xl border border-gray-100">
+          <i class="fa-solid fa-location-dot text-[#250902] text-base mt-0.5"></i>
           <div>
-            <h4 class="font-bold text-[#372E2D]">Endereço Exato</h4>
+            <h4 class="font-bold text-[#250902]">Endereço Exato</h4>
             <p>Rua Alameda das Espatódeas, 120 - Caminho das Árvores, Salvador - BA, 41820-460</p>
           </div>
         </div>
 
         <!-- EDITAR AQUI: Telefone/WhatsApp visível -->
-        <div class="flex items-start space-x-3 bg-[#fcf8f7] p-3 rounded-2xl border border-[#C9958D]/20">
+        <div class="flex items-start space-x-3 bg-gray-50 p-3 rounded-2xl border border-gray-100">
           <i class="fa-brands fa-whatsapp text-emerald-600 text-base mt-0.5"></i>
           <div>
-            <h4 class="font-bold text-[#372E2D]">Telefone / WhatsApp</h4>
+            <h4 class="font-bold text-[#250902]">Telefone / WhatsApp</h4>
             <p>(71) 99999-9999</p>
           </div>
         </div>
 
         <!-- EDITAR AQUI: Link e arroba do Instagram -->
-        <div class="flex items-start space-x-3 bg-[#fcf8f7] p-3 rounded-2xl border border-[#C9958D]/20">
-          <i class="fa-brands fa-instagram text-pink-600 text-base mt-0.5"></i>
+        <div class="flex items-start space-x-3 bg-gray-50 p-3 rounded-2xl border border-gray-100">
+          <i class="fa-brands fa-instagram text-[#250902] text-base mt-0.5"></i>
           <div>
-            <h4 class="font-bold text-[#372E2D]">Instagram</h4>
-            <a href="https://instagram.com" target="_blank" class="text-[#AF4C3C] hover:underline font-semibold">@chocoffeepaixao</a>
+            <h4 class="font-bold text-[#250902]">Instagram</h4>
+            <a href="https://instagram.com" target="_blank" class="text-[#fb6f92] hover:underline font-semibold">@chocoffeepaixao</a>
           </div>
         </div>
 
         <!-- EDITAR AQUI: Horários detalhados de funcionamento -->
-        <div class="flex items-start space-x-3 bg-[#fcf8f7] p-3 rounded-2xl border border-[#C9958D]/20">
-          <i class="fa-solid fa-clock text-[#AF4C3C] text-base mt-0.5"></i>
+        <div class="flex items-start space-x-3 bg-gray-50 p-3 rounded-2xl border border-gray-100">
+          <i class="fa-solid fa-clock text-[#250902] text-base mt-0.5"></i>
           <div>
-            <h4 class="font-bold text-[#372E2D]">Horários de Funcionamento</h4>
+            <h4 class="font-bold text-[#250902]">Horários de Funcionamento</h4>
             <p>• Terça a Sexta: 10h00 às 19h00</p>
             <p>• Sábado e Domingo: 11h00 às 18h00</p>
             <p>• Segunda-feira: Fechado</p>
@@ -208,10 +223,10 @@
         </div>
 
         <!-- EDITAR AQUI: Formas de pagamento aceitas -->
-        <div class="flex items-start space-x-3 bg-[#fcf8f7] p-3 rounded-2xl border border-[#C9958D]/20">
-          <i class="fa-solid fa-wallet text-[#AF4C3C] text-base mt-0.5"></i>
+        <div class="flex items-start space-x-3 bg-gray-50 p-3 rounded-2xl border border-gray-100">
+          <i class="fa-solid fa-wallet text-[#250902] text-base mt-0.5"></i>
           <div>
-            <h4 class="font-bold text-[#372E2D]">Formas de Pagamento</h4>
+            <h4 class="font-bold text-[#250902]">Formas de Pagamento</h4>
             <p>• Pix (Com chave instantânea)</p>
             <p>• Cartões de Crédito e Débito</p>
             <p>• Dinheiro</p>
@@ -224,13 +239,13 @@
 
   <!-- MODAL DE SELEÇÃO DO KIT DEGUSTAÇÃO -->
   <div id="kit-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
-    <div class="bg-white w-full max-w-md rounded-t-3xl sm:rounded-3xl max-h-[90vh] flex flex-col overflow-hidden shadow-2xl">
-      <div class="p-4 bg-[#372E2D] text-white flex items-center justify-between">
+    <div class="bg-white w-full max-w-md rounded-t-3xl sm:rounded-3xl max-h-[90vh] flex flex-col overflow-hidden shadow-2xl border border-[#fb6f92]/20">
+      <div class="p-4 bg-[#fb6f92] text-white flex items-center justify-between">
         <div>
-          <h3 class="font-black text-sm uppercase tracking-wider flex items-center">
-            <i class="fa-solid fa-box-open text-[#FF7E6A] mr-2"></i> Monte seu Kit Degustação
+          <h3 class="font-black text-sm uppercase tracking-wider flex items-center text-white">
+            <i class="fa-solid fa-box-open text-[#250902] mr-2"></i> Monte seu Kit Degustação
           </h3>
-          <p class="text-[11px] text-[#C9958D]">Escolha exatamente 4 brownies para o seu kit</p>
+          <p class="text-[11px] text-[#ffe5ec]">Escolha exatamente 4 brownies para o seu kit</p>
         </div>
         <button onclick="closeKitModal()" class="text-white/70 hover:text-white p-1">
           <i class="fa-solid fa-xmark text-lg"></i>
@@ -238,9 +253,9 @@
       </div>
 
       <div class="p-4 overflow-y-auto space-y-3 flex-grow">
-        <div class="bg-[#fcf8f7] p-2.5 rounded-xl border border-[#C9958D]/30 flex justify-between items-center text-xs font-bold text-[#372E2D]">
+        <div class="bg-[#ffe5ec] p-2.5 rounded-xl border border-[#fb6f92]/30 flex justify-between items-center text-xs font-bold text-[#250902]">
           <span>Itens selecionados:</span>
-          <span id="kit-count-badge" class="bg-[#AF4C3C] text-white px-2.5 py-0.5 rounded-full text-xs font-black">0 / 4</span>
+          <span id="kit-count-badge" class="bg-[#fb6f92] text-white px-2.5 py-0.5 rounded-full text-xs font-black">0 / 4</span>
         </div>
 
         <div id="kit-options-list" class="space-y-2">
@@ -248,17 +263,17 @@
         </div>
       </div>
 
-      <div class="p-4 bg-[#fcf8f7] border-t border-[#C9958D]/30 space-y-2">
-        <div class="flex justify-between items-center font-black text-sm text-[#372E2D]">
+      <div class="p-4 bg-gray-50 border-t border-gray-100 space-y-2">
+        <div class="flex justify-between items-center font-black text-sm text-[#250902]">
           <span>Preço do Kit:</span>
-          <!-- EDITAR AQUI: Preço exibido no rodapé do Kit -->
-          <span class="text-lg text-[#FF5E46]">R$ 42,00</span>
+          <!-- Preço dinâmico calculated conforme os brownies selecionados -->
+          <span id="kit-dynamic-price" class="text-lg text-[#fb6f92]">R$ 0,00</span>
         </div>
         <button 
           id="confirm-kit-btn"
           onclick="confirmKitSelection()" 
           disabled
-          class="w-full py-3.5 bg-gray-400 text-white font-bold text-xs rounded-2xl shadow-lg transition flex items-center justify-center space-x-2 cursor-not-allowed"
+          class="w-full py-3.5 bg-gray-300 text-gray-500 font-bold text-xs rounded-2xl transition flex items-center justify-center space-x-2 cursor-not-allowed"
         >
           <span>Adicionar Kit ao Carrinho</span>
         </button>
@@ -268,12 +283,12 @@
 
   <!-- MODAL DO CARRINHO / CHECKOUT -->
   <div id="cart-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
-    <div class="bg-white w-full max-w-lg rounded-t-3xl sm:rounded-3xl max-h-[90vh] flex flex-col overflow-hidden shadow-2xl">
+    <div class="bg-white w-full max-w-lg rounded-t-3xl sm:rounded-3xl max-h-[90vh] flex flex-col overflow-hidden shadow-2xl border border-[#fb6f92]/20">
       
       <!-- Cabeçalho do Modal -->
-      <div class="p-4 bg-[#372E2D] text-white flex items-center justify-between">
+      <div class="p-4 bg-[#fb6f92] text-white flex items-center justify-between">
         <h3 class="font-black text-sm uppercase tracking-wider flex items-center">
-          <i class="fa-solid fa-cart-shopping text-[#FF7E6A] mr-2"></i> Seu Pedido
+          <i class="fa-solid fa-cart-shopping text-[#250902] mr-2"></i> Seu Pedido
         </h3>
         <button onclick="closeCartModal()" class="text-white/70 hover:text-white p-1">
           <i class="fa-solid fa-xmark text-lg"></i>
@@ -283,49 +298,49 @@
       <!-- Conteúdo do Modal -->
       <div class="p-4 overflow-y-auto space-y-4 flex-grow">
         
-        <div id="cart-items-list" class="space-y-3 border-b border-[#C9958D]/20 pb-4">
+        <div id="cart-items-list" class="space-y-3 border-b border-gray-100 pb-4">
           <!-- Renderizado via JS -->
         </div>
 
         <div class="space-y-3 pt-2">
-          <h4 class="font-bold text-xs uppercase text-[#372E2D] border-b border-[#C9958D]/20 pb-1 flex items-center">
-            <i class="fa-solid fa-truck-fast mr-1.5 text-[#AF4C3C]"></i> Opção de Entrega
+          <h4 class="font-bold text-xs uppercase text-[#250902] border-b border-gray-100 pb-1 flex items-center">
+            <i class="fa-solid fa-truck-fast mr-1.5 text-[#250902]"></i> Opção de Entrega
           </h4>
           
           <div class="grid grid-cols-2 gap-2">
-            <label class="flex items-center space-x-2 border border-[#C9958D]/40 p-2.5 rounded-xl cursor-pointer hover:bg-[#fcf8f7]">
-              <input type="radio" name="delivery-type" value="entrega" checked onchange="toggleDeliveryFields()" class="accent-[#FF5E46]">
-              <span class="text-xs font-bold text-[#372E2D]">Delivery</span>
+            <label class="flex items-center space-x-2 border border-gray-200 p-2.5 rounded-xl cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="delivery-type" value="entrega" checked onchange="toggleDeliveryFields()" class="accent-[#fb6f92]">
+              <span class="text-xs font-bold text-[#250902]">Delivery</span>
             </label>
-            <label class="flex items-center space-x-2 border border-[#C9958D]/40 p-2.5 rounded-xl cursor-pointer hover:bg-[#fcf8f7]">
-              <input type="radio" name="delivery-type" value="retirada" onchange="toggleDeliveryFields()" class="accent-[#FF5E46]">
-              <span class="text-xs font-bold text-[#372E2D]">Retirar na Loja</span>
+            <label class="flex items-center space-x-2 border border-gray-200 p-2.5 rounded-xl cursor-pointer hover:bg-gray-50">
+              <input type="radio" name="delivery-type" value="retirada" onchange="toggleDeliveryFields()" class="accent-[#fb6f92]">
+              <span class="text-xs font-bold text-[#250902]">Retirar na Loja</span>
             </label>
           </div>
 
           <div id="delivery-address-group" class="space-y-2">
-            <input type="text" id="cust-address" placeholder="Endereço completo (Rua, Nº, Bairro, Apto)" class="w-full p-2.5 bg-[#fcf8f7] border border-[#C9958D]/40 rounded-xl text-xs font-semibold text-[#372E2D] outline-none focus:border-[#AF4C3C]">
+            <input type="text" id="cust-address" placeholder="Endereço completo (Rua, Nº, Bairro, Apto)" class="w-full p-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs font-semibold text-[#250902] outline-none focus:border-[#fb6f92]">
           </div>
 
-          <h4 class="font-bold text-xs uppercase text-[#372E2D] border-b border-[#C9958D]/20 pb-1 pt-2 flex items-center">
-            <i class="fa-solid fa-user mr-1.5 text-[#AF4C3C]"></i> Seus Dados
+          <h4 class="font-bold text-xs uppercase text-[#250902] border-b border-gray-100 pb-1 pt-2 flex items-center">
+            <i class="fa-solid fa-user mr-1.5 text-[#250902]"></i> Seus Dados
           </h4>
-          <input type="text" id="cust-name" placeholder="Seu Nome Completo" class="w-full p-2.5 bg-[#fcf8f7] border border-[#C9958D]/40 rounded-xl text-xs font-semibold text-[#372E2D] outline-none focus:border-[#AF4C3C]">
+          <input type="text" id="cust-name" placeholder="Seu Nome Completo" class="w-full p-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs font-semibold text-[#250902] outline-none focus:border-[#fb6f92]">
 
-          <h4 class="font-bold text-xs uppercase text-[#372E2D] border-b border-[#C9958D]/20 pb-1 pt-2 flex items-center">
-            <i class="fa-solid fa-pen mr-1.5 text-[#AF4C3C]"></i> Observações do Pedido
+          <h4 class="font-bold text-xs uppercase text-[#250902] border-b border-gray-100 pb-1 pt-2 flex items-center">
+            <i class="fa-solid fa-pen mr-1.5 text-[#250902]"></i> Observações do Pedido
           </h4>
           <textarea 
             id="cust-notes" 
             rows="2" 
             placeholder="Ex: Tirar fita da embalagem, colocar bilhete de presente, etc." 
-            class="w-full p-2.5 bg-[#fcf8f7] border border-[#C9958D]/40 rounded-xl text-xs font-semibold text-[#372E2D] outline-none focus:border-[#AF4C3C] resize-none"
+            class="w-full p-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs font-semibold text-[#250902] outline-none focus:border-[#fb6f92] resize-none"
           ></textarea>
 
-          <h4 class="font-bold text-xs uppercase text-[#372E2D] border-b border-[#C9958D]/20 pb-1 pt-2 flex items-center">
-            <i class="fa-solid fa-credit-card mr-1.5 text-[#AF4C3C]"></i> Forma de Pagamento
+          <h4 class="font-bold text-xs uppercase text-[#250902] border-b border-gray-100 pb-1 pt-2 flex items-center">
+            <i class="fa-solid fa-credit-card mr-1.5 text-[#250902]"></i> Forma de Pagamento
           </h4>
-          <select id="cust-payment" class="w-full p-2.5 bg-[#fcf8f7] border border-[#C9958D]/40 rounded-xl text-xs font-semibold text-[#372E2D] outline-none focus:border-[#AF4C3C]">
+          <select id="cust-payment" class="w-full p-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs font-semibold text-[#250902] outline-none focus:border-[#fb6f92]">
             <option value="Pix">Pix (Chave enviada no WhatsApp)</option>
             <option value="Cartão de Crédito">Cartão de Crédito</option>
             <option value="Cartão de Débito">Cartão de Débito</option>
@@ -335,10 +350,10 @@
 
       </div>
 
-      <div class="p-4 bg-[#fcf8f7] border-t border-[#C9958D]/30 space-y-3">
-        <div class="flex justify-between items-center font-black text-sm text-[#372E2D]">
+      <div class="p-4 bg-gray-50 border-t border-gray-100 space-y-3">
+        <div class="flex justify-between items-center font-black text-sm text-[#250902]">
           <span>TOTAL:</span>
-          <span id="modal-cart-total" class="text-lg text-[#FF5E46]">R$ 0,00</span>
+          <span id="modal-cart-total" class="text-lg text-[#fb6f92]">R$ 0,00</span>
         </div>
         <button 
           onclick="sendOrderToWhatsApp()" 
@@ -355,67 +370,187 @@
   <script>
     // =========================================================================
     // EDITAR AQUI: NÚMERO DO WHATSAPP DA LOJA (Formato: 55 + DDD + Número)
-    // Exemplo: "5571999999999"
     // =========================================================================
     const WHATSAPP_NUMBER = "5571999999999"; 
 
     // =========================================================================
-    // EDITAR AQUI: BASE DE DADOS DOS PRODUTOS E CAMINHO DAS IMAGENS
-    // Você pode alterar os preços, nomes, descrições e o arquivo da imagem em "image".
+    // EDITAR AQUI: BASE DE DADOS DOS PRODUTOS
     // =========================================================================
     const products = [
+      // ----- BROWNIES RECHEADOS (R$ 8,00 e R$ 10,00) -----
       {
         id: 1,
-        name: "Brownie Tradicional",
-        category: "tradicionais",
-        price: 8.50,
+        name: "Brownie Recheado de Prestígio",
+        category: "recheados",
+        price: 8.00,
         isKit: false,
-        description: "Massa molhadinha por dentro, casquinha crocante por fora. Feito com cacau nobre 70% e manteiga de primeira qualidade.",
-        // EDITAR AQUI: Altere para o caminho da sua imagem local (ex: "imagens/tradicional.jpg")
-        image: "imagens/brownie-tradicional.jpg",
+        description: "Delicioso brownie recheado com beijinho cremoso artesanal de coco e cobertura especial.",
+        image: "imagens/brownie-prestigio.jpg",
         fallbackImg: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=400&q=80"
       },
       {
         id: 2,
-        name: "Brownie Recheado de Ninho",
+        name: "Brownie Recheado de Maracujá",
         category: "recheados",
-        price: 12.00,
+        price: 8.00,
         isKit: false,
-        description: "Recheado generosamente com brigadeiro artesanal cremoso de Leite Ninho puro.",
-        // EDITAR AQUI: Altere para o caminho da sua imagem local (ex: "imagens/ninho.jpg")
-        image: "imagens/brownie-ninho.jpg",
+        description: "Contraste perfeito da massa densa de chocolate com recheio azedinho de maracujá.",
+        image: "imagens/brownie-maracuja.jpg",
         fallbackImg: "https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&w=400&q=80"
       },
       {
         id: 3,
-        name: "Brownie Recheado de Nutella",
+        name: "Brownie Recheado de Meio Amargo",
         category: "recheados",
-        price: 13.50,
+        price: 8.00,
         isKit: false,
-        description: "Recheado até a borda com Nutella original e toque final de pedaços de avelã.",
-        // EDITAR AQUI: Altere para o caminho da sua imagem local (ex: "imagens/nutella.jpg")
-        image: "imagens/brownie-nutella.jpg",
+        description: "Para os amantes de chocolate: brigadeiro intenso de chocolate meio amargo 50%.",
+        image: "imagens/brownie-meio-amargo.jpg",
         fallbackImg: "https://images.unsplash.com/photo-1589218436045-ee320057f443?auto=format&fit=crop&w=400&q=80"
       },
       {
         id: 4,
-        name: "Brownie de Doce de Leite",
+        name: "Brownie Recheado de Ninho com Nutella",
         category: "recheados",
-        price: 12.00,
+        price: 8.00,
         isKit: false,
-        description: "Recheio espesso de doce de leite cremoso artesanal cozido lentamente.",
-        // EDITAR AQUI: Altere para o caminho da sua imagem local (ex: "imagens/docedeleite.jpg")
+        description: "A combinação dos sonhos: camada generosa de Leite Ninho artesanal acompanhada de Nutella legítima.",
+        image: "imagens/brownie-ninho-nutella.jpg",
+        fallbackImg: "https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        id: 5,
+        name: "Brownie Recheado de Doce de Leite",
+        category: "recheados",
+        price: 8.00,
+        isKit: false,
+        description: "Recheio espesso de doce de leite cremoso cozido suavemente.",
         image: "imagens/brownie-doce-de-leite.jpg",
         fallbackImg: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=400&q=80"
       },
       {
-        id: 5,
+        id: 6,
+        name: "Brownie Recheado de Ferrero Rocher",
+        category: "recheados",
+        price: 10.00,
+        isKit: false,
+        description: "Recheio super especial sabor Ferrero com creme de avelã e pedacinhos crocantes.",
+        image: "imagens/brownie-ferrero.jpg",
+        fallbackImg: "https://images.unsplash.com/photo-1589218436045-ee320057f443?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        id: 7,
+        name: "Brownie Recheado de Romeu e Julieta",
+        category: "recheados",
+        price: 10.00,
+        isKit: false,
+        description: "Combinação clássica irresistível de cream cheese suave com goiabada cascão.",
+        image: "imagens/brownie-romeu-julieta.jpg",
+        fallbackImg: "https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&w=400&q=80"
+      },
+
+      // ----- DOCES & BOLOS GELADOS (R$ 14,00) -----
+      {
+        id: 8,
+        name: "Brownie com Cocada de Maracujá",
+        category: "bolos-cocada",
+        price: 14.00,
+        isKit: false,
+        description: "Base de brownie molhadinho coberta com cocada cremosa artesanal e toque tropical de maracujá.",
+        image: "imagens/brownie-cocada-maracuja.jpg",
+        fallbackImg: "https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        id: 9,
+        name: "Brownie com Bolo Gelado de Coco",
+        category: "bolos-cocada",
+        price: 14.00,
+        isKit: false,
+        description: "Massa super molhada embrulhada e geladinha com calda abundante de coco e leite condensado.",
+        image: "imagens/bolo-gelado-coco.jpg",
+        fallbackImg: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        id: 10,
+        name: "Brownie com Bolo Gelado de Chocolate",
+        category: "bolos-cocada",
+        price: 14.00,
+        isKit: false,
+        description: "Delícia cremosa com dupla dose de chocolate macio e bem geladinho.",
+        image: "imagens/bolo-gelado-chocolate.jpg",
+        fallbackImg: "https://images.unsplash.com/photo-1589218436045-ee320057f443?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        id: 11,
+        name: "Brownie com Bolo Gelado de Ninho com Geleia de Morango",
+        category: "bolos-cocada",
+        price: 14.00,
+        isKit: false,
+        description: "Combinação refrescante de Ninho bem molhadinho com geleia caseira de morangos selecionados.",
+        image: "imagens/bolo-gelado-ninho-morango.jpg",
+        fallbackImg: "https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        id: 12,
+        name: "Brownie com Bolo Gelado de Mousse de Maracujá",
+        category: "bolos-cocada",
+        price: 14.00,
+        isKit: false,
+        description: "Sabor marcante com mousse leve, suave e bem aerada de maracujá.",
+        image: "imagens/bolo-gelado-mousse-maracuja.jpg",
+        fallbackImg: "https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?auto=format&fit=crop&w=400&q=80"
+      },
+
+      // ----- DIFERENCIADOS -----
+      {
+        id: 13,
+        name: "Brookies (Brownie com Cookie)",
+        category: "diferenciados",
+        price: 16.00,
+        isKit: false,
+        description: "A junção perfeita da camada densa de brownie com a textura croco-macia de cookie tradicional com gotas de chocolate.",
+        image: "imagens/brookies.jpg",
+        fallbackImg: "https://images.unsplash.com/photo-1589218436045-ee320057f443?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        id: 14,
+        name: "Browdim (Brownie com Pudim)",
+        category: "diferenciados",
+        price: 18.00,
+        isKit: false,
+        description: "Sobremesa dos deuses: uma fatia de pudim de leite lisinho por cima de um brownie super fudgy com calda de caramelo.",
+        image: "imagens/browdim.jpg",
+        fallbackImg: "https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        id: 15,
+        name: "BrigBrownie (Brigadeiro de Brownie)",
+        category: "diferenciados",
+        price: 4.00,
+        isKit: false,
+        description: "Docinho enrolado de brigadeiro gourmet feito com massa de brownie real.",
+        image: "imagens/brigbrownie.jpg",
+        fallbackImg: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        id: 16,
+        name: "Brownie Bits",
+        category: "diferenciados",
+        price: 10.00,
+        isKit: false,
+        description: "Pedaços cortados de brownie banhados e cobertos em chocolate nobre crocante.",
+        image: "imagens/brownie-bits.jpg",
+        fallbackImg: "https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?auto=format&fit=crop&w=400&q=80"
+      },
+
+      // ----- KITS & COMBOS -----
+      {
+        id: 17,
         name: "Kit Degustação (4 Brownies)",
         category: "combos",
-        price: 42.00,
+        price: 32.00, // Preço inicial de referência (4 x R$ 8,00)
         isKit: true,
-        description: "Monte o seu kit perfeito escolhendo exatamente 4 brownies entre todas as nossas opções do cardápio!",
-        // EDITAR AQUI: Altere para o caminho da sua imagem local (ex: "imagens/kit.jpg")
+        description: "Monte o seu kit perfeito escolhendo exatamente 4 brownies recheados! O valor ajusta-se conforme a sua escolha.",
         image: "imagens/kit-degustacao.jpg",
         fallbackImg: "https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?auto=format&fit=crop&w=400&q=80"
       }
@@ -423,7 +558,7 @@
 
     let cart = [];
     let activeCategory = 'all';
-    let kitSelection = {}; // { productId: qty }
+    let kitSelection = {};
 
     function formatCurrency(value) {
       return `R$ ${value.toFixed(2).replace('.', ',')}`;
@@ -442,16 +577,16 @@
 
       if (filtered.length === 0) {
         container.innerHTML = `
-          <div class="text-center py-12 text-[#5C423E]">
-            <i class="fa-solid fa-cookie-bite text-3xl mb-2 text-[#C9958D]"></i>
-            <p class="text-xs font-semibold">Nenhum brownie encontrado.</p>
+          <div class="text-center py-12 text-[#250902]">
+            <i class="fa-solid fa-cookie-bite text-3xl mb-2 text-[#fb6f92]"></i>
+            <p class="text-xs font-semibold">Nenhum item encontrado.</p>
           </div>
         `;
         return;
       }
 
       container.innerHTML = filtered.map(p => `
-        <div class="bg-white rounded-2xl p-3 border border-[#C9958D]/30 shadow-sm flex items-center space-x-3 hover:border-[#AF4C3C] transition cursor-pointer" onclick="openProductModal(${p.id})">
+        <div class="bg-white rounded-2xl p-3 border border-gray-100 shadow-sm flex items-center space-x-3 hover:border-[#fb6f92]/40 transition cursor-pointer" onclick="openProductModal(${p.id})">
           <img 
             src="${p.image}" 
             alt="${p.name}" 
@@ -459,15 +594,15 @@
             class="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-xl flex-shrink-0"
           >
           <div class="flex-grow min-w-0">
-            <h3 class="font-extrabold text-sm text-[#372E2D] truncate">${p.name}</h3>
-            <p class="text-[11px] text-[#5C423E] line-clamp-2 mt-0.5">${p.description}</p>
+            <h3 class="font-extrabold text-sm text-[#250902] truncate">${p.name}</h3>
+            <p class="text-[11px] text-[#43291f]/70 line-clamp-2 mt-0.5">${p.description}</p>
             <div class="flex items-center justify-between mt-2" onclick="event.stopPropagation()">
-              <span class="font-black text-sm text-[#AF4C3C]">${formatCurrency(p.price)}</span>
+              <span class="font-black text-sm text-[#fb6f92]">${p.isKit ? 'A partir de ' + formatCurrency(32.00) : formatCurrency(p.price)}</span>
               <button 
                 onclick="${p.isKit ? 'openKitModal()' : `addToCart(${p.id})`}" 
-                class="bg-[#FF5E46] hover:bg-[#FF7E6A] text-white text-xs font-bold px-3 py-1.5 rounded-xl transition shadow-sm active:scale-95"
+                class="bg-[#fb6f92] hover:bg-[#ff5c8a] text-white text-xs font-bold px-3 py-1.5 rounded-xl transition shadow-sm active:scale-95 flex items-center"
               >
-                ${p.isKit ? '<i class="fa-solid fa-sliders mr-1"></i> Montar Kit' : '+ Adicionar'}
+                ${p.isKit ? '<i class="fa-solid fa-sliders mr-1 text-[#250902]"></i> Montar Kit' : '+ Adicionar'}
               </button>
             </div>
           </div>
@@ -479,12 +614,12 @@
     function setCategory(cat) {
       activeCategory = cat;
       document.querySelectorAll('.cat-btn').forEach(btn => {
-        btn.className = "cat-btn px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap bg-white text-[#5C423E] border border-[#C9958D]/30 hover:border-[#AF4C3C] transition flex items-center";
+        btn.className = "cat-btn px-4 py-2 rounded-xl text-xs font-bold shrink-0 bg-white text-[#250902] border border-[#fb6f92]/30 hover:bg-[#ffe5ec] transition flex items-center";
       });
       
       const activeBtn = document.getElementById(`cat-${cat}`);
       if (activeBtn) {
-        activeBtn.className = "cat-btn px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap bg-[#AF4C3C] text-white shadow-sm transition flex items-center";
+        activeBtn.className = "cat-btn px-4 py-2 rounded-xl text-xs font-bold shrink-0 bg-[#fb6f92] text-white shadow-md transition flex items-center";
       }
 
       renderProducts();
@@ -504,12 +639,12 @@
       imgEl.onerror = function() { this.onerror=null; this.src = p.fallbackImg; };
 
       document.getElementById('detail-title').innerText = p.name;
-      document.getElementById('detail-price').innerText = formatCurrency(p.price);
+      document.getElementById('detail-price').innerText = p.isKit ? 'A partir de ' + formatCurrency(32.00) : formatCurrency(p.price);
       document.getElementById('detail-desc').innerText = p.description;
 
       const addBtn = document.getElementById('detail-add-btn');
       if (p.isKit) {
-        addBtn.innerHTML = `<i class="fa-solid fa-sliders mr-1"></i> Montar Kit Degustação`;
+        addBtn.innerHTML = `<i class="fa-solid fa-sliders mr-1 text-[#250902]"></i> Montar Kit Degustação`;
         addBtn.onclick = () => { closeProductModal(); openKitModal(); };
       } else {
         addBtn.innerHTML = `+ Adicionar ao Carrinho (${formatCurrency(p.price)})`;
@@ -543,34 +678,48 @@
       document.getElementById('kit-modal').classList.add('hidden');
     }
 
+    function calculateKitPrice() {
+      let totalPrice = 0;
+      for (const [id, qty] of Object.entries(kitSelection)) {
+        const prod = products.find(p => p.id == id);
+        if (prod) {
+          totalPrice += prod.price * qty;
+        }
+      }
+      return totalPrice;
+    }
+
     function renderKitOptions() {
       const container = document.getElementById('kit-options-list');
-      const individualProducts = products.filter(p => !p.isKit);
+      const kitEligibleProducts = products.filter(p => p.category === 'recheados' && !p.isKit);
 
       const totalSelected = Object.values(kitSelection).reduce((a, b) => a + b, 0);
+      const currentKitPrice = calculateKitPrice();
 
       document.getElementById('kit-count-badge').innerText = `${totalSelected} / 4`;
+      document.getElementById('kit-dynamic-price').innerText = formatCurrency(currentKitPrice);
 
       const confirmBtn = document.getElementById('confirm-kit-btn');
       if (totalSelected === 4) {
         confirmBtn.disabled = false;
-        confirmBtn.className = "w-full py-3.5 bg-[#FF5E46] hover:bg-[#FF7E6A] text-white font-bold text-xs rounded-2xl shadow-lg transition flex items-center justify-center space-x-2 cursor-pointer";
+        confirmBtn.className = "w-full py-3.5 bg-[#fb6f92] hover:bg-[#ff5c8a] text-white font-bold text-xs rounded-2xl shadow-lg transition flex items-center justify-center space-x-2 cursor-pointer";
       } else {
         confirmBtn.disabled = true;
-        confirmBtn.className = "w-full py-3.5 bg-gray-400 text-white font-bold text-xs rounded-2xl shadow-lg transition flex items-center justify-center space-x-2 cursor-not-allowed";
+        confirmBtn.className = "w-full py-3.5 bg-gray-300 text-gray-500 font-bold text-xs rounded-2xl transition flex items-center justify-center space-x-2 cursor-not-allowed";
       }
 
-      container.innerHTML = individualProducts.map(p => {
+      container.innerHTML = kitEligibleProducts.map(p => {
         const qty = kitSelection[p.id] || 0;
         return `
-          <div class="flex items-center justify-between p-2.5 bg-white rounded-xl border border-[#C9958D]/30">
+          <div class="flex items-center justify-between p-2.5 bg-gray-50 rounded-xl border border-gray-100">
             <div>
-              <span class="font-bold text-xs text-[#372E2D] block">${p.name}</span>
+              <span class="font-bold text-xs text-[#250902] block">${p.name}</span>
+              <span class="text-[10px] text-[#fb6f92] font-semibold">${formatCurrency(p.price)}/un</span>
             </div>
             <div class="flex items-center space-x-2">
-              <button onclick="changeKitItemQty(${p.id}, -1)" class="w-7 h-7 rounded-lg bg-[#372E2D] text-white font-bold text-xs">-</button>
-              <span class="font-black text-xs text-[#372E2D] w-4 text-center">${qty}</span>
-              <button onclick="changeKitItemQty(${p.id}, 1)" class="w-7 h-7 rounded-lg bg-[#FF5E46] text-white font-bold text-xs">+</button>
+              <button onclick="changeKitItemQty(${p.id}, -1)" class="w-7 h-7 rounded-lg bg-gray-200 text-[#250902] font-bold text-xs hover:bg-gray-300">-</button>
+              <span class="font-black text-xs text-[#250902] w-4 text-center">${qty}</span>
+              <button onclick="changeKitItemQty(${p.id}, 1)" class="w-7 h-7 rounded-lg bg-[#fb6f92] text-white font-bold text-xs hover:bg-[#ff5c8a]">+</button>
             </div>
           </div>
         `;
@@ -604,17 +753,18 @@
       for (const [id, qty] of Object.entries(kitSelection)) {
         const prod = products.find(p => p.id == id);
         if (prod) {
-          kitItemsText.push(`${qty}x ${prod.name}`);
+          kitItemsText.push(`${qty}x ${prod.name.replace('Brownie Recheado de ', '')}`);
         }
       }
 
       const kitProduct = products.find(p => p.isKit);
+      const calculatedPrice = calculateKitPrice();
       const customName = `${kitProduct.name} (${kitItemsText.join(', ')})`;
 
       cart.push({
         id: Date.now(),
         name: customName,
-        price: kitProduct.price,
+        price: calculatedPrice,
         qty: 1
       });
 
@@ -674,7 +824,7 @@
       const container = document.getElementById('cart-items-list');
       
       if (cart.length === 0) {
-        container.innerHTML = `<p class="text-xs text-[#5C423E] text-center py-4">O carrinho ficou vazio.</p>`;
+        container.innerHTML = `<p class="text-xs text-[#250902] text-center py-4">O carrinho ficou vazio.</p>`;
         closeCartModal();
         return;
       }
@@ -682,13 +832,13 @@
       container.innerHTML = cart.map(item => `
         <div class="flex items-center justify-between text-xs py-1">
           <div class="flex-grow pr-2">
-            <span class="font-bold text-[#372E2D] block">${item.name}</span>
-            <span class="text-[#AF4C3C] font-semibold">${formatCurrency(item.price)} cada</span>
+            <span class="font-bold text-[#250902] block">${item.name}</span>
+            <span class="text-[#fb6f92] font-semibold">${formatCurrency(item.price)} cada</span>
           </div>
           <div class="flex items-center space-x-2">
-            <button onclick="updateCartQty(${item.id}, -1)" class="w-6 h-6 rounded-lg bg-[#372E2D] text-white font-bold">-</button>
-            <span class="font-extrabold text-[#372E2D]">${item.qty}</span>
-            <button onclick="updateCartQty(${item.id}, 1)" class="w-6 h-6 rounded-lg bg-[#FF5E46] text-white font-bold">+</button>
+            <button onclick="updateCartQty(${item.id}, -1)" class="w-6 h-6 rounded-lg bg-gray-200 text-[#250902] font-bold hover:bg-gray-300">-</button>
+            <span class="font-extrabold text-[#250902]">${item.qty}</span>
+            <button onclick="updateCartQty(${item.id}, 1)" class="w-6 h-6 rounded-lg bg-[#fb6f92] text-white font-bold hover:bg-[#ff5c8a]">+</button>
           </div>
         </div>
       `).join('');
