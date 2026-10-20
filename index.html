@@ -40,7 +40,7 @@
     <!-- EDITAR AQUI: Imagem do Banner de Capa -->
     <img 
       src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=1200&q=80" 
-      alt="Capa Brownies" 
+      alt="Capa Confeitaria" 
       class="w-full h-full object-cover opacity-80"
     >
     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
@@ -99,7 +99,7 @@
       >
     </div>
 
-    <!-- Categorias com suporte total a touch/arraste em celulares e centralização em desktop -->
+    <!-- Categorias -->
     <div class="w-full overflow-hidden">
       <div class="filter-scroll scrollbar-hide space-x-2 py-1 px-0.5 md:justify-center">
         <button onclick="setCategory('all')" id="cat-all" class="cat-btn px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold shrink-0 bg-[#fb6f92] text-white shadow-md transition flex items-center">
@@ -190,16 +190,14 @@
       </div>
       <div class="p-5 space-y-3 overflow-y-auto text-xs sm:text-sm text-[#43291f]">
         
-        <!-- EDITAR AQUI: Endereço completo -->
         <div class="flex items-start space-x-3 bg-gray-50 p-3 rounded-2xl border border-gray-100">
           <i class="fa-solid fa-location-dot text-[#250902] text-base mt-0.5"></i>
           <div>
-            <h4 class="font-bold text-[#250902]">Endereço</h4>
+            <h4 class="font-bold text-[#250902]">Endereço Exato</h4>
             <p>R. Ver. Zezéu Ribeiro, Boca da Mata - Cajazeiras, Salvador - BA, 41343-265</p>
           </div>
         </div>
 
-        <!-- EDITAR AQUI: Telefone/WhatsApp visível -->
         <div class="flex items-start space-x-3 bg-gray-50 p-3 rounded-2xl border border-gray-100">
           <i class="fa-brands fa-whatsapp text-emerald-600 text-base mt-0.5"></i>
           <div>
@@ -208,7 +206,6 @@
           </div>
         </div>
 
-        <!-- EDITAR AQUI: Link e arroba do Instagram -->
         <div class="flex items-start space-x-3 bg-gray-50 p-3 rounded-2xl border border-gray-100">
           <i class="fa-brands fa-instagram text-[#250902] text-base mt-0.5"></i>
           <div>
@@ -217,7 +214,6 @@
           </div>
         </div>
 
-        <!-- EDITAR AQUI: Horários detalhados de funcionamento -->
         <div class="flex items-start space-x-3 bg-gray-50 p-3 rounded-2xl border border-gray-100">
           <i class="fa-solid fa-clock text-[#250902] text-base mt-0.5"></i>
           <div>
@@ -228,7 +224,6 @@
           </div>
         </div>
 
-        <!-- EDITAR AQUI: Formas de pagamento aceitas -->
         <div class="flex items-start space-x-3 bg-gray-50 p-3 rounded-2xl border border-gray-100">
           <i class="fa-solid fa-wallet text-[#250902] text-base mt-0.5"></i>
           <div>
@@ -376,7 +371,7 @@
     // =========================================================================
     // EDITAR AQUI: NÚMERO DO WHATSAPP DA LOJA (Formato: 55 + DDD + Número)
     // =========================================================================
-    const WHATSAPP_NUMBER = "557196848782"; 
+    const WHATSAPP_NUMBER = "5571999999999"; 
 
     // LÓGICA DE HORÁRIO E STATUS DA LOJA
     function updateStoreStatus() {
@@ -400,7 +395,6 @@
           isOpen = true;
         }
       }
-      // Segunda (1): Fechado
 
       const dot = document.getElementById('store-status-dot');
       const text = document.getElementById('store-status-text');
@@ -410,12 +404,12 @@
         text.innerText = "Disponível • Faça a sua encomenda";
       } else {
         dot.className = "w-2.5 h-2.5 rounded-full bg-red-500";
-        text.innerText = "Fechado no momento • Apenas Encomendas";
+        text.innerText = "Fechado no momento • Verifique os horários";
       }
     }
 
     // =========================================================================
-    // EDITAR AQUI: BASE DE DADOS DOS PRODUTOS
+    // BASE DE DADOS DOS PRODUTOS (APENAS PRODUTOS COM imagem-brownie.jpg)
     // =========================================================================
     const products = [
       // ----- BROWNIES RECHEADOS (R$ 8,00 e R$ 10,00) -----
@@ -426,8 +420,8 @@
         price: 8.00,
         isKit: false,
         description: "Delicioso brownie recheado com beijinho cremoso artesanal de coco e cobertura especial.",
-        image: "imagens/brownie-prestigio.jpg",
-        fallbackImg: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=400&q=80"
+        image: "imagem-brownie.jpg",
+        fallbackImg: "imagem-brownie.jpg"
       },
       {
         id: 2,
@@ -436,8 +430,8 @@
         price: 8.00,
         isKit: false,
         description: "Contraste perfeito da massa densa de chocolate com recheio azedinho de maracujá.",
-        image: "imagens/brownie-maracuja.jpg",
-        fallbackImg: "https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&w=400&q=80"
+        image: "imagem-brownie.jpg",
+        fallbackImg: "imagem-brownie.jpg"
       },
       {
         id: 3,
@@ -446,8 +440,8 @@
         price: 8.00,
         isKit: false,
         description: "Para os amantes de chocolate: brigadeiro intenso de chocolate meio amargo 50%.",
-        image: "imagens/brownie-meio-amargo.jpg",
-        fallbackImg: "https://images.unsplash.com/photo-1589218436045-ee320057f443?auto=format&fit=crop&w=400&q=80"
+        image: "imagem-brownie.jpg",
+        fallbackImg: "imagem-brownie.jpg"
       },
       {
         id: 4,
@@ -456,8 +450,8 @@
         price: 8.00,
         isKit: false,
         description: "A combinação dos sonhos: camada generosa de Leite Ninho artesanal acompanhada de Nutella legítima.",
-        image: "imagens/brownie-ninho-nutella.jpg",
-        fallbackImg: "https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?auto=format&fit=crop&w=400&q=80"
+        image: "imagem-brownie.jpg",
+        fallbackImg: "imagem-brownie.jpg"
       },
       {
         id: 5,
@@ -466,8 +460,8 @@
         price: 8.00,
         isKit: false,
         description: "Recheio espesso de doce de leite cremoso cozido suavemente.",
-        image: "imagens/brownie-doce-de-leite.jpg",
-        fallbackImg: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=400&q=80"
+        image: "imagem-brownie.jpg",
+        fallbackImg: "imagem-brownie.jpg"
       },
       {
         id: 6,
@@ -476,8 +470,8 @@
         price: 10.00,
         isKit: false,
         description: "Recheio super especial sabor Ferrero com creme de avelã e pedacinhos crocantes.",
-        image: "imagens/brownie-ferrero.jpg",
-        fallbackImg: "https://images.unsplash.com/photo-1589218436045-ee320057f443?auto=format&fit=crop&w=400&q=80"
+        image: "imagem-brownie.jpg",
+        fallbackImg: "imagem-brownie.jpg"
       },
       {
         id: 7,
@@ -486,8 +480,8 @@
         price: 10.00,
         isKit: false,
         description: "Combinação clássica irresistível de cream cheese suave com goiabada cascão.",
-        image: "imagens/brownie-romeu-julieta.jpg",
-        fallbackImg: "https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&w=400&q=80"
+        image: "imagem-brownie.jpg",
+        fallbackImg: "imagem-brownie.jpg"
       },
 
       // ----- DOCES & BOLOS GELADOS (R$ 14,00) -----
@@ -498,8 +492,8 @@
         price: 14.00,
         isKit: false,
         description: "Base de brownie molhadinho coberta com cocada cremosa artesanal e toque tropical de maracujá.",
-        image: "imagens/brownie-cocada-maracuja.jpg",
-        fallbackImg: "https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?auto=format&fit=crop&w=400&q=80"
+        image: "imagem-brownie.jpg",
+        fallbackImg: "imagem-brownie.jpg"
       },
       {
         id: 9,
@@ -508,8 +502,8 @@
         price: 14.00,
         isKit: false,
         description: "Massa super molhada embrulhada e geladinha com calda abundante de coco e leite condensado.",
-        image: "imagens/bolo-gelado-coco.jpg",
-        fallbackImg: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=400&q=80"
+        image: "imagem-brownie.jpg",
+        fallbackImg: "imagem-brownie.jpg"
       },
       {
         id: 10,
@@ -518,8 +512,8 @@
         price: 14.00,
         isKit: false,
         description: "Delícia cremosa com dupla dose de chocolate macio e bem geladinho.",
-        image: "imagens/bolo-gelado-chocolate.jpg",
-        fallbackImg: "https://images.unsplash.com/photo-1589218436045-ee320057f443?auto=format&fit=crop&w=400&q=80"
+        image: "imagem-brownie.jpg",
+        fallbackImg: "imagem-brownie.jpg"
       },
       {
         id: 11,
@@ -528,8 +522,8 @@
         price: 14.00,
         isKit: false,
         description: "Combinação refrescante de Ninho bem molhadinho com geleia caseira de morangos selecionados.",
-        image: "imagens/bolo-gelado-ninho-morango.jpg",
-        fallbackImg: "https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&w=400&q=80"
+        image: "imagem-brownie.jpg",
+        fallbackImg: "imagem-brownie.jpg"
       },
       {
         id: 12,
@@ -538,8 +532,8 @@
         price: 14.00,
         isKit: false,
         description: "Sabor marcante com mousse leve, suave e bem aerada de maracujá.",
-        image: "imagens/bolo-gelado-mousse-maracuja.jpg",
-        fallbackImg: "https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?auto=format&fit=crop&w=400&q=80"
+        image: "imagem-brownie.jpg",
+        fallbackImg: "imagem-brownie.jpg"
       },
 
       // ----- DIFERENCIADOS -----
@@ -550,8 +544,8 @@
         price: 16.00,
         isKit: false,
         description: "A junção perfeita da camada densa de brownie com a textura croco-macia de cookie tradicional com gotas de chocolate.",
-        image: "imagens/brookies.jpg",
-        fallbackImg: "https://images.unsplash.com/photo-1589218436045-ee320057f443?auto=format&fit=crop&w=400&q=80"
+        image: "imagem-brownie.jpg",
+        fallbackImg: "imagem-brownie.jpg"
       },
       {
         id: 14,
@@ -560,8 +554,8 @@
         price: 18.00,
         isKit: false,
         description: "Sobremesa dos deuses: uma fatia de pudim de leite lisinho por cima de um brownie super fudgy com calda de caramelo.",
-        image: "imagens/browdim.jpg",
-        fallbackImg: "https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&w=400&q=80"
+        image: "imagem-brownie.jpg",
+        fallbackImg: "imagem-brownie.jpg"
       },
       {
         id: 15,
@@ -570,8 +564,8 @@
         price: 4.00,
         isKit: false,
         description: "Docinho enrolado de brigadeiro gourmet feito com massa de brownie real.",
-        image: "imagens/brigbrownie.jpg",
-        fallbackImg: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=400&q=80"
+        image: "imagem-brownie.jpg",
+        fallbackImg: "imagem-brownie.jpg"
       },
       {
         id: 16,
@@ -580,8 +574,8 @@
         price: 10.00,
         isKit: false,
         description: "Pedaços cortados de brownie banhados e cobertos em chocolate nobre crocante.",
-        image: "imagens/brownie-bits.jpg",
-        fallbackImg: "https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?auto=format&fit=crop&w=400&q=80"
+        image: "imagem-brownie.jpg",
+        fallbackImg: "imagem-brownie.jpg"
       },
 
       // ----- KITS & COMBOS -----
@@ -592,8 +586,8 @@
         price: 32.00,
         isKit: true,
         description: "Monte o seu kit perfeito escolhendo exatamente 4 brownies recheados! O valor ajusta-se conforme a sua escolha.",
-        image: "imagens/kit-degustacao.jpg",
-        fallbackImg: "https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?auto=format&fit=crop&w=400&q=80"
+        image: "imagem-brownie.jpg",
+        fallbackImg: "imagem-brownie.jpg"
       }
     ];
 
